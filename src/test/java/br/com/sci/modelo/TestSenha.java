@@ -22,10 +22,10 @@ public class TestSenha {
 	private EntityManager em;
 	
 	@Test
-	public void deveSalvarSenha(){
+	public void deveSalvarSenha(int ns){
 		Senha senha = new Senha();
 		senha.setSigSenha("A");
-		senha.setNumSenha(001);
+		senha.setNumSenha((ns++));
 		senha.setDataEmissao(new Date());
 		senha.setServSenha("Fisioterapia");
 		assertTrue("Não deve ter ID definido", senha.isTransient());
@@ -39,7 +39,7 @@ public class TestSenha {
 	@Test
 	public void devePesquisarSenhas(){
 		for(int i=0;i<10;i++){
-			deveSalvarSenha();
+			deveSalvarSenha(1);
 		}
 		
 		TypedQuery<Senha> query = em.createQuery("SELECT s FROM Senha s", Senha.class);
@@ -50,7 +50,7 @@ public class TestSenha {
 	}
 	@Test
 	public void deveAlterarSenha(){
-		deveSalvarSenha();
+		deveSalvarSenha(1);
 		
 		TypedQuery<Senha> query = em.createQuery("SELECT s FROM Senha s",Senha.class).setMaxResults(1);
 		Senha senha = query.getSingleResult();
@@ -72,7 +72,7 @@ public class TestSenha {
 	
 	@Test
 	public void deveExcluirSenha(){
-		deveSalvarSenha();
+		deveSalvarSenha(1);
 		
 		TypedQuery<Long> query = em.createQuery("SELECT MAX(s.id) FROM Senha s",Long.class);
 		Long id = query.getSingleResult();
@@ -85,7 +85,7 @@ public class TestSenha {
 		
 		assertNull("Não deve encontrar o senha",senhaExcluida);
 	}
-
+/*
 	@AfterClass
 	public static void deveLimparBaseTeste(){
 		EntityManager entityManager = JPAUtil.ISNTANCE.getEntityManager();
@@ -97,7 +97,7 @@ public class TestSenha {
 		assertTrue("Certifica que a base foi limpada",qtdRegistrosExclidos>0);
 				
 	}
-	
+	*/
 	@Before
 	public void instanciarEntityManager(){
 		em=JPAUtil.ISNTANCE.getEntityManager();
