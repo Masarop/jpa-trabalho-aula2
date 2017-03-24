@@ -22,10 +22,15 @@ public class TestSenha {
 	private EntityManager em;
 	
 	@Test
+	public void deveSalvarSenha(){
+		deveSalvarSenha(1);
+	}
+	
+	
 	public void deveSalvarSenha(int ns){
 		Senha senha = new Senha();
 		senha.setSigSenha("A");
-		senha.setNumSenha((ns++));
+		senha.setNumSenha(ns);
 		senha.setDataEmissao(new Date());
 		senha.setServSenha("Fisioterapia");
 		assertTrue("Não deve ter ID definido", senha.isTransient());
@@ -34,12 +39,14 @@ public class TestSenha {
 		em.persist(senha);
 		em.getTransaction().commit();
 		
-		assertFalse("entidade agora tem id ainda", senha.isTransient());
+		assertFalse("entidade agora tem id definido", senha.isTransient());
 	}
+	
+	
 	@Test
 	public void devePesquisarSenhas(){
 		for(int i=0;i<10;i++){
-			deveSalvarSenha(1);
+			deveSalvarSenha(i);
 		}
 		
 		TypedQuery<Senha> query = em.createQuery("SELECT s FROM Senha s", Senha.class);
@@ -50,7 +57,7 @@ public class TestSenha {
 	}
 	@Test
 	public void deveAlterarSenha(){
-		deveSalvarSenha(1);
+		deveSalvarSenha();
 		
 		TypedQuery<Senha> query = em.createQuery("SELECT s FROM Senha s",Senha.class).setMaxResults(1);
 		Senha senha = query.getSingleResult();
@@ -61,7 +68,7 @@ public class TestSenha {
 		
 		em.getTransaction().begin();
 		
-		senha.setDataEmissao(new Date());;
+		senha.setNumSenha(senha.getNumSenha()+50);
 		
 		senha = em.merge(senha);
 
@@ -72,7 +79,7 @@ public class TestSenha {
 	
 	@Test
 	public void deveExcluirSenha(){
-		deveSalvarSenha(1);
+		deveSalvarSenha();
 		
 		TypedQuery<Long> query = em.createQuery("SELECT MAX(s.id) FROM Senha s",Long.class);
 		Long id = query.getSingleResult();
