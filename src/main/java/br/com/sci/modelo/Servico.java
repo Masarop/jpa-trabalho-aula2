@@ -106,8 +106,13 @@ public class Servico extends BaseEntity<Long> {
 
 
 
+	public Servico(Long id, String descricao, String sigServico) {
+		this.id=id;
+		this.descricao = descricao;
+		//this.sigServico = sigServico;
+	}
+
 	public Servico() {
-		super();
 	}
 
 }
