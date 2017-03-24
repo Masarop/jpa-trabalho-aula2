@@ -7,6 +7,8 @@
 	<persistence-unit name="JpaTrabalhoAula2" transaction-type="RESOURCE_LOCAL">
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		
+		<class>br.com.sci.modelo.Senha</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_trabalhoposaula2" />
