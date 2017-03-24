@@ -1,1 +1,2 @@
-# jpa-trabalho-aula2
+# jpa-seed
+Projeto base para utilização de JPA
