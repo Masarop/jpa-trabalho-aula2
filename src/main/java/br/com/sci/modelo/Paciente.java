@@ -1,5 +1,6 @@
 package br.com.sci.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -38,7 +39,8 @@ public class Paciente extends BaseEntity<Long> {
 	
 	@OneToMany(mappedBy="paciente",fetch=FetchType.LAZY)
 	private List<Senha> senhas;
-
+	
+	
 	
 	
 	
@@ -81,15 +83,15 @@ public class Paciente extends BaseEntity<Long> {
 
 
 	public List<Senha> getSenhas() {
+		if(senhas==null){
+			senhas=new ArrayList<>();
+		}
 		return senhas;
 	}
 
 
 
 
-	public void setSenhas(List<Senha> senhas) {
-		this.senhas = senhas;
-	}
 
 
 
