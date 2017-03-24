@@ -50,6 +50,51 @@ public class Senha extends BaseEntity<Long> {
 		return id;
 	}
 
+
+	public String getSigSenha() {
+		return sigSenha;
+	}
+
+	public void setSigSenha(String sigSenha) {
+		this.sigSenha = sigSenha;
+	}
+
+	public int getNumSenha() {
+		return numSenha;
+	}
+
+	public void setNumSenha(int numSenha) {
+		this.numSenha = numSenha;
+	}
+
+	public Date getDataEmissao() {
+		return dataEmissao;
+	}
+
+	public void setDataEmissao(Date dataEmissao) {
+		this.dataEmissao = dataEmissao;
+	}
+
+	public String getServSenha() {
+		return servSenha;
+	}
+
+	public void setServSenha(String servSenha) {
+		this.servSenha = servSenha;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
+	
+//--------------------------construtores-------------------------
+	
+	public Senha() {
+	}
 	
 	
 }
