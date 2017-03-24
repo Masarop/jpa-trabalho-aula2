@@ -9,7 +9,9 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<class>br.com.sci.modelo.Senha</class>
-
+		<class>br.com.sci.modelo.Paciente</class>
+		<class>br.com.sci.modelo.Servico</class>
+		<class>br.com.sci.modelo.Atendente</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_trabalhoposaula2" />
 			<property name="javax.persistence.jdbc.user" value="root" />

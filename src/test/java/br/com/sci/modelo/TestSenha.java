@@ -29,10 +29,10 @@ public class TestSenha {
 	
 	public void deveSalvarSenha(int ns){
 		Senha senha = new Senha();
-		senha.setSigSenha("A");
+		senha.getServico().setSigServico("A");
 		senha.setNumSenha(ns);
 		senha.setDataEmissao(new Date());
-		senha.setServSenha("Fisioterapia");
+		senha.getServico().setDescricao("Fisioterapia");
 		assertTrue("Não deve ter ID definido", senha.isTransient());
 		
 		em.getTransaction().begin();
@@ -92,7 +92,7 @@ public class TestSenha {
 		
 		assertNull("Não deve encontrar o senha",senhaExcluida);
 	}
-/*
+ 
 	@AfterClass
 	public static void deveLimparBaseTeste(){
 		EntityManager entityManager = JPAUtil.ISNTANCE.getEntityManager();
@@ -104,7 +104,7 @@ public class TestSenha {
 		assertTrue("Certifica que a base foi limpada",qtdRegistrosExclidos>0);
 				
 	}
-	*/
+	
 	@Before
 	public void instanciarEntityManager(){
 		em=JPAUtil.ISNTANCE.getEntityManager();

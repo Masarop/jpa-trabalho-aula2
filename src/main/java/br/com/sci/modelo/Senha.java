@@ -2,13 +2,15 @@ package br.com.sci.modelo;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,9 +29,6 @@ public class Senha extends BaseEntity<Long> {
 	@Column(name = "id_senha", nullable = false)
 	private Long id;
 	
-	@Column(name = "singla_senha", nullable = false, length = 3)
-	private String sigSenha;
-
 
 	@Column(name = "num_senha", nullable = false, length = 3)
 	private int numSenha;
@@ -37,26 +36,20 @@ public class Senha extends BaseEntity<Long> {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dt_emissao", nullable = false)
 	private Date dataEmissao;
-	
-	@Basic(fetch = FetchType.LAZY, optional = false)
-	@Column(name="servico_senha", length = 50)
-	private String servSenha;
 		
+	@ManyToOne(cascade = {CascadeType.PERSIST},fetch=FetchType.LAZY)
+	@JoinColumn(name="id_servico",referencedColumnName="id_servico",nullable=false,insertable=true,updatable=false)
+	private Servico servico;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST},fetch=FetchType.LAZY)
+	@JoinColumn(name="id_paciente",referencedColumnName="id_paciente",nullable=false,insertable=true,updatable=false)
+	private Paciente paciente;
 	
 //------------------------------Get & Set----------------------
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
 		return id;
-	}
-
-
-	public String getSigSenha() {
-		return sigSenha;
-	}
-
-	public void setSigSenha(String sigSenha) {
-		this.sigSenha = sigSenha;
 	}
 
 	public int getNumSenha() {
@@ -75,24 +68,35 @@ public class Senha extends BaseEntity<Long> {
 		this.dataEmissao = dataEmissao;
 	}
 
-	public String getServSenha() {
-		return servSenha;
-	}
-
-	public void setServSenha(String servSenha) {
-		this.servSenha = servSenha;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
 
+	public Servico getServico() {
+		return servico;
+	}
 
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+	
+	
 	
 //--------------------------construtores-------------------------
 	
+
+
+
 	public Senha() {
 	}
 	
