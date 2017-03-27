@@ -2,6 +2,7 @@
 Trabalho de conclusão da Disciplina de JPA da Pós-Gradução em Desenvolvimento de Software Full Stack
 da Faculdade Delta
 Qual a responsabilidade/objeto das anotações:
+
 @MappedSuperclass
 	R.: Mapear uma classe generica
 @Version
