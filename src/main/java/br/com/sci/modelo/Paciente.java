@@ -103,6 +103,15 @@ public class Paciente extends BaseEntity<Long> {
 
 
 
+	public Paciente(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+
+
+
 	public Paciente() {
 		super();
 	}

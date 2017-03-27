@@ -49,10 +49,7 @@ public class Servico extends BaseEntity<Long> {
 	@OneToMany(mappedBy="servico",fetch=FetchType.LAZY)
 	private List<Senha> senhas;
 	
-	@ManyToMany(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY)
-	@JoinTable(name="atendentes_servico", joinColumns=@JoinColumn(name="id_servico"),
-							  inverseJoinColumns=@JoinColumn(name="id_atendente"))
-	private List<Atendente> atendentes;
+
 	
 	//----------------------------------Get & Set--------------
 	@Override
@@ -93,20 +90,9 @@ public class Servico extends BaseEntity<Long> {
 		this.senhas = senhas;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public List<Atendente> getAtendentes() {
-		if(atendentes==null){
-			atendentes=new ArrayList<>();
-		}
-		return atendentes;
-	}
-
-
-
-	public Servico(Long id, String descricao, String sigServico) {
+	public Servico(Long id, String descricao) {
+		super();
 		this.id=id;
 		this.descricao = descricao;
 		//this.sigServico = sigServico;
